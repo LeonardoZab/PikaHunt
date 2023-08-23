@@ -1,0 +1,100 @@
+let des = document.getElementById('des').getContext('2d')
+
+let bg = new Bg(0,0,500,1000, 'assets/bg.png')
+let bg2 = new Bg(0,-1000,500,1000, 'assets/bg.png')
+let pika = new Pika(0,0,50,50, 'assets/pika1.png')
+let agnes = new Agnes(200,500,100,100,'assets/agnes1.png')
+let rocket = new Rocket(100,100,100,100,'assets/rocket1.png')
+let texto_pontos = new Texto()
+let texto_vidas = new Texto()
+let val_pts = new Texto()
+let val_vidas = new Texto()
+
+let texto_game_over = new Texto()
+let jogar = true
+
+// let rocket = new Obj(0,0,100,100,'darkorchid')
+
+document.addEventListener('keydown', (event)=>{
+    if(event.key === 'a'){
+        // console.log('pressionado a tecla "a" ')
+        agnes.dir = - 5
+    }else if(event.key === 'd'){
+        // console.log('pressionado a tecla "d" ')
+        agnes.dir = 5
+    }else if(event.key === 's'){
+        console.log('pressionado a tecla "s" ')
+    }else if(event.key === 'w'){
+        console.log('pressionado a tecla "w" ')
+    }
+})
+document.addEventListener('keyup', (event)=>{
+    if(event.key === 'a'){
+        // console.log('soltou a tecla "a" ')
+        agnes.dir = 0
+    }else if(event.key === 'd'){
+        // console.log('soltou a tecla "d" ')
+        agnes.dir = 0
+    }else if(event.key === 's'){
+        console.log('soltou a tecla "s" ')
+    }else if(event.key === 'w'){
+        console.log('soltou a tecla "w" ')
+    }
+})
+
+function game_over(){
+    if(agnes.vidas <= 0){
+        jogar = false
+    }
+}
+
+function colisao(){
+    if(agnes.colid(rocket)){
+        rocket.recomeca()
+        agnes.vidas -=1
+    }
+    if(agnes.colid(pika)){
+        pika.recomeca()
+        agnes.pts +=1
+    }
+}
+
+function desenha(){
+    bg.desenha_obj()
+    bg2.desenha_obj()
+    if(jogar){        
+        agnes.desenha_obj()
+        rocket.desenha_obj()
+        pika.desenha_obj()
+        texto_pontos.des_texto('Pontos: ',326,40, 'orange','30px Times')
+        texto_vidas.des_texto('Vidas: ',40,40, 'green','30px Times')
+        val_pts.des_texto(agnes.pts,420,40, 'white','30px Times')
+        val_vidas.des_texto(agnes.vidas,120,40, 'white','30px Times')
+    }else{
+        texto_game_over.des_texto('Game Over',128,350, 'green','50px Times')
+    }
+}
+
+function atualiza(){
+    bg.move(2,1000,0)
+    bg2.move(2,0,-1000)
+    if(jogar){
+        agnes.move()
+        agnes.anim('agnes')
+        rocket.move()
+        rocket.anim('rocket')
+        pika.move()
+        pika.anim('pika')
+        colisao()
+        game_over()
+    }
+    
+}
+
+function main(){
+    des.clearRect(0,0,500,700)
+    atualiza()
+    desenha()
+}
+
+setInterval(main,10)
