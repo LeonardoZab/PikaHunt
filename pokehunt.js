@@ -10,7 +10,12 @@ let texto_vidas = new Texto()
 let val_pts = new Texto()
 let val_vidas = new Texto()
 
-let texto_game_over = new Texto()
+let imgGameOver = new Image();
+imgGameOver.onload = function() {
+    imgGameOver.width = 500; 
+    imgGameOver.height = 700
+}
+imgGameOver.src = 'assets/gameover.png';
 let jogar = true
 
 // let rocket = new Obj(0,0,100,100,'darkorchid')
@@ -71,7 +76,9 @@ function desenha(){
         val_pts.des_texto(agnes.pts,420,40, 'white','30px Times')
         val_vidas.des_texto(agnes.vidas,120,40, 'white','30px Times')
     }else{
-        texto_game_over.des_texto('Game Over',128,350, 'green','50px Times')
+        const x = (des.canvas.width - imgGameOver.width) / 2;
+    const y = (des.canvas.height - imgGameOver.height) / 2;
+    des.drawImage(imgGameOver, x, y, imgGameOver.width, imgGameOver.height);
     }
 }
 
