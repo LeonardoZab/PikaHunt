@@ -54,8 +54,8 @@ class Agnes extends Obj{
 
 class Rocket extends Obj{
 
-    move(){
-        this.y += 2
+    move(vel){
+        this.y += vel
         if(this.y >= 750){
             this.y = -50
             this.x = Math.random() * (400 - 0) // a aranha tem 100 px de largura
