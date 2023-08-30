@@ -17,6 +17,7 @@ canvas{
 
 .botao{
 position: absolute;
+cursor: pointer;
 left: 620px;
 top: 510px;
 }

@@ -81,7 +81,7 @@ function game_over(){
 }
 
 function game_won(){
-    if(agnes.pts >= 5){
+    if(agnes.pts == 45){
         jogar = 5
         som1.stop()
         som4.play()
