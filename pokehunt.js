@@ -33,7 +33,16 @@ som1.volume = 1.0
 const som2 = new Audio('assets/pokemon.flac')
 som1.volume = 1.0
 
-const som3 = new Audio('assets/inimigo.flac')
+const som3 = new Audio('assets/inimigo.wav')
+som1.volume = 1.0
+
+const som4 = new Audio('assets/win.wav')
+som1.volume = 1.0
+
+const som5 = new Audio('assets/telainicio.wav')
+som1.volume = 1.0
+
+const som6 = new Audio('assets/gameover.wav')
 som1.volume = 1.0
 
 document.addEventListener('keydown', (event)=>{
@@ -67,12 +76,15 @@ function game_over(){
     if(agnes.vidas <= 0){
         jogar = 4
         som1.stop()
+        som6.play()
     }
 }
 
 function game_won(){
     if(agnes.pts >= 5){
         jogar = 5
+        som1.stop()
+        som4.play()
     }
 }
 
@@ -124,6 +136,8 @@ function desenha(){
         val_pts.des_texto(agnes.pts,420,40, 'white','30px Times')
         val_vidas.des_texto(agnes.vidas,120,40, 'white','30px Times')
     }else if(jogar==5){
+        som1.stop()
+        som4.play()
         const x = (des.canvas.width - imgGameWon.width) / 2;
         const y = (des.canvas.height - imgGameWon.height) / 2;
         des.drawImage(imgGameWon, x, y, imgGameWon.width, imgGameWon.height);
@@ -131,6 +145,8 @@ function desenha(){
         const x = (des.canvas.width - imgGameOver.width) / 2;
         const y = (des.canvas.height - imgGameOver.height) / 2;
         des.drawImage(imgGameOver, x, y, imgGameOver.width, imgGameOver.height);
+        som1.stop()
+        som6.play()
             }
          }  
 

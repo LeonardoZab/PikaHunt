@@ -2,7 +2,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: #3b3b3b;
-    
+    align-items: center
 }
 
 canvas{
@@ -12,5 +12,11 @@ canvas{
     bottom: 0;
     left: 0;
     right: 0;
-    background-color: #4b4b4b;
+    background-image: url("./assets/tela_inicio.jpeg");
+}
+
+.botao{
+position: absolute;
+left: 620px;
+top: 510px;
 }
