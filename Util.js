@@ -37,6 +37,11 @@ class Agnes extends Obj{
 
     move(){
         this.x += this.dir
+        if(this.x<= 60){
+            this.x = 60
+        }else if(this.x >= 350){
+            this.x = 350
+        }
     }
 
     colid(objeto){
@@ -63,8 +68,8 @@ class Rocket extends Obj{
     }
     
     recomeca(){
-        this.y = -200
-        this.x = Math.random() * (400 - 0) // a aranha tem 100 px de largura
+        this.y = -100
+        this.x = Math.random() * (350 - 55) + 55
     }
 }
 
@@ -80,7 +85,7 @@ class Bg extends Obj{
 class Pika extends Rocket{
     recomeca(){
         this.y = -100
-        this.x = Math.random() * (400 - 0) // a aranha tem 100 px de largura
+        this.x = Math.random() * (350 - 55) + 55
     }
 }
 
