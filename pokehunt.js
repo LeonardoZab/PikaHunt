@@ -74,16 +74,16 @@ document.addEventListener('keyup', (event)=>{
 
 function game_over(){
     if(agnes.vidas <= 0){
-        jogar = 4
-        som1.stop()
+        jogar = 5
+        som1.pause();
         som6.play()
     }
 }
 
 function game_won(){
-    if(agnes.pts == 45){
-        jogar = 5
-        som1.stop()
+    if(agnes.pts >= 45){
+        jogar = 4
+        som1.pause();
         som4.play()
     }
 }
@@ -106,9 +106,9 @@ function colisao(){
 }
 
 function desenha(){
-    bg.desenha_obj()
-    bg2.desenha_obj()
     if(jogar==1){
+        bg.desenha_obj()
+        bg2.desenha_obj()
         som1.play()        
         agnes.desenha_obj()
         rocket.desenha_obj()
@@ -117,7 +117,9 @@ function desenha(){
         texto_vidas.des_texto('Vidas: ',40,40, 'green','30px Times')
         val_pts.des_texto(agnes.pts,420,40, 'white','30px Times')
         val_vidas.des_texto(agnes.vidas,120,40, 'white','30px Times')
-    }else if(jogar==2){
+    } if(jogar==2){
+        bg.desenha_obj()
+        bg2.desenha_obj()
         som1.play()        
         agnes.desenha_obj()
         rocket.desenha_obj()
@@ -126,7 +128,9 @@ function desenha(){
         texto_vidas.des_texto('Vidas: ',40,40, 'green','30px Times')
         val_pts.des_texto(agnes.pts,420,40, 'white','30px Times')
         val_vidas.des_texto(agnes.vidas,120,40, 'white','30px Times')
-    }else if(jogar==3){
+    } if(jogar==3){
+        bg.desenha_obj()
+        bg2.desenha_obj()
         som1.play()        
         agnes.desenha_obj()
         rocket.desenha_obj()
@@ -135,17 +139,17 @@ function desenha(){
         texto_vidas.des_texto('Vidas: ',40,40, 'green','30px Times')
         val_pts.des_texto(agnes.pts,420,40, 'white','30px Times')
         val_vidas.des_texto(agnes.vidas,120,40, 'white','30px Times')
-    }else if(jogar==5){
-        som1.stop()
+    } if(jogar==4){
+        som1.pause();
         som4.play()
         const x = (des.canvas.width - imgGameWon.width) / 2;
         const y = (des.canvas.height - imgGameWon.height) / 2;
         des.drawImage(imgGameWon, x, y, imgGameWon.width, imgGameWon.height);
-    }else{
+    }if(jogar==5){
         const x = (des.canvas.width - imgGameOver.width) / 2;
         const y = (des.canvas.height - imgGameOver.height) / 2;
         des.drawImage(imgGameOver, x, y, imgGameOver.width, imgGameOver.height);
-        som1.stop()
+        som1.pause()
         som6.play()
             }
          }  
@@ -154,6 +158,7 @@ function desenha(){
             bg.move(2,1000,0)
             bg2.move(2,0,-1000)
             if(jogar==1){
+                game_won()
                 som1.play()        
                 agnes.move()
                 agnes.anim('agnes')
@@ -163,6 +168,7 @@ function desenha(){
                 pika.anim('pika')
                 colisao()
                 game_over()
+                game_won()
             }else if(jogar==2){
                 som1.play()        
                 agnes.move()
@@ -173,6 +179,7 @@ function desenha(){
                 pika.anim('pika')
                 colisao()
                 game_over()
+                game_won()
             }else if(jogar==3){
                 som1.play()        
                 agnes.move()
@@ -183,6 +190,7 @@ function desenha(){
                 pika.anim('pika')
                 colisao()
                 game_over()
+                game_won()
             }
             
         }
